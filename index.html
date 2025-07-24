@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  />
+  <title>緩慢流動的漸變背景演示</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    :root {
+      --h1: 30;
+      --h2: 260;
+      --h3: 280;
+      --h4: 220;
+      --h5: 210;
+      --h6: 205;
+      --p1x: 25%;
+      --p1y: 40%;
+      --p2x: 70%;
+      --p2y: 60%;
+      --p3x: 50%;
+      --p3y: 80%;
+      --p4x: 60%;
+      --p4y: 30%;
+      --p5x: 80%;
+      --p5y: 85%;
+      --p6x: 20%;
+      --p6y: 75%;
+    }
+    .gradient-bg {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+      font-family: sans-serif;
+      background: 
+        radial-gradient(circle at var(--p1x) var(--p1y), hsl(var(--h1), 80%, 95%) 0%, transparent 45%),
+        radial-gradient(circle at var(--p2x) var(--p2y), hsl(var(--h2), 60%, 94%) 0%, transparent 50%),
+        radial-gradient(circle at var(--p3x) var(--p3y), hsl(var(--h3), 80%, 96%) 0%, transparent 55%),
+        radial-gradient(circle at var(--p4x) var(--p4y), hsl(var(--h4), 70%, 97%) 0%, transparent 40%),
+        radial-gradient(circle at var(--p5x) var(--p5y), hsl(var(--h5), 75%, 97%) 0%, transparent 50%),
+        radial-gradient(circle at var(--p6x) var(--p6y), hsl(var(--h6), 80%, 98%) 0%, transparent 45%),
+        linear-gradient(90deg, #ffece3 0%, #f3e6ff 50%, #e3f2fd 100%);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+      transition: background 0.2s;
+    }
+  </style>
+</head>
+<body>
+  <div class="gradient-bg">
+    <h1>動態漸變背景示例</h1>
+    <p>顏色緩慢流動，類似示例圖。</p>
+  </div>
+  <script>
+    // 用 sin 讓色相和位置平滑往返流動
+    const root = document.documentElement;
+    let t = 0;
+    function lerp(a, b, t) {
+      return a + (b - a) * t;
+    }
+    function animateGradient() {
+      t += 0.026; // 降速
+      // 色相區間（粉橘、淡紫、淺藍、亮藍、深藍、亮藍）
+      const h1 = lerp(15, 35, (Math.sin(t) + 1) / 2);      // 粉橘
+      const h2 = lerp(270, 300, (Math.sin(t + 1.2) + 1) / 2); // 淡紫
+      const h3 = lerp(200, 220, (Math.sin(t + 2.7) + 1) / 2); // 淺藍
+      const h4 = lerp(190, 210, (Math.sin(t + 4.1) + 1) / 2); // 亮藍
+      const h5 = lerp(205, 215, (Math.sin(t + 5.3) + 1) / 2); // 深藍
+      const h6 = lerp(200, 220, (Math.sin(t + 6.1) + 1) / 2); // 亮藍
+      // 位置區間
+      const p1x = lerp(15, 85, (Math.sin(t + 0.5) + 1) / 2);
+      const p1y = lerp(30, 70, (Math.sin(t + 1.7) + 1) / 2);
+      const p2x = lerp(55, 95, (Math.sin(t + 2.3) + 1) / 2);
+      const p2y = lerp(40, 80, (Math.sin(t + 2.9) + 1) / 2);
+      const p3x = lerp(30, 70, (Math.sin(t + 3.5) + 1) / 2);
+      const p3y = lerp(60, 95, (Math.sin(t + 4.2) + 1) / 2);
+      const p4x = lerp(10, 90, (Math.sin(t + 5.1) + 1) / 2);
+      const p4y = lerp(20, 80, (Math.sin(t + 5.7) + 1) / 2);
+      const p5x = lerp(60, 90, (Math.sin(t + 6.3) + 1) / 2);
+      const p5y = lerp(70, 95, (Math.sin(t + 6.7) + 1) / 2);
+      const p6x = lerp(10, 40, (Math.sin(t + 7.1) + 1) / 2);
+      const p6y = lerp(60, 90, (Math.sin(t + 7.7) + 1) / 2);
+      // 更新 CSS 變數
+      root.style.setProperty('--h1', h1);
+      root.style.setProperty('--h2', h2);
+      root.style.setProperty('--h3', h3);
+      root.style.setProperty('--h4', h4);
+      root.style.setProperty('--h5', h5);
+      root.style.setProperty('--h6', h6);
+      root.style.setProperty('--p1x', p1x + '%');
+      root.style.setProperty('--p1y', p1y + '%');
+      root.style.setProperty('--p2x', p2x + '%');
+      root.style.setProperty('--p2y', p2y + '%');
+      root.style.setProperty('--p3x', p3x + '%');
+      root.style.setProperty('--p3y', p3y + '%');
+      root.style.setProperty('--p4x', p4x + '%');
+      root.style.setProperty('--p4y', p4y + '%');
+      root.style.setProperty('--p5x', p5x + '%');
+      root.style.setProperty('--p5y', p5y + '%');
+      root.style.setProperty('--p6x', p6x + '%');
+      root.style.setProperty('--p6y', p6y + '%');
+      requestAnimationFrame(animateGradient);
+    }
+    requestAnimationFrame(animateGradient);
+  </script>
+</body>
+</html>
