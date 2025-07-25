@@ -43,12 +43,12 @@
       color: #333;
       font-family: sans-serif;
       background: 
-        radial-gradient(circle at var(--p1x) var(--p1y), hsl(var(--h1), 80%, 95%) 0%, transparent 45%),
-        radial-gradient(circle at var(--p2x) var(--p2y), hsl(var(--h2), 60%, 94%) 0%, transparent 50%),
-        radial-gradient(circle at var(--p3x) var(--p3y), hsl(var(--h3), 80%, 96%) 0%, transparent 55%),
-        radial-gradient(circle at var(--p4x) var(--p4y), hsl(var(--h4), 70%, 97%) 0%, transparent 40%),
-        radial-gradient(circle at var(--p5x) var(--p5y), hsl(var(--h5), 75%, 97%) 0%, transparent 50%),
-        radial-gradient(circle at var(--p6x) var(--p6y), hsl(var(--h6), 80%, 98%) 0%, transparent 45%),
+        radial-gradient(circle at var(--p1x) var(--p1y), hsl(var(--h1), 80%, 92%) 0%, transparent 55%),
+        radial-gradient(circle at var(--p2x) var(--p2y), hsl(var(--h2), 65%, 90%) 0%, transparent 60%),
+        radial-gradient(circle at var(--p3x) var(--p3y), hsl(var(--h3), 85%, 93%) 0%, transparent 65%),
+        radial-gradient(circle at var(--p4x) var(--p4y), hsl(var(--h4), 75%, 94%) 0%, transparent 50%),
+        radial-gradient(circle at var(--p5x) var(--p5y), hsl(var(--h5), 80%, 95%) 0%, transparent 60%),
+        radial-gradient(circle at var(--p6x) var(--p6y), hsl(var(--h6), 85%, 96%) 0%, transparent 55%),
         linear-gradient(90deg, #ffece3 0%, #f3e6ff 50%, #e3f2fd 100%);
       background-attachment: fixed;
       background-repeat: no-repeat;
@@ -70,7 +70,7 @@
       return a + (b - a) * t;
     }
     function animateGradient() {
-      t += 0.026; // 降速
+      t += 0.0156; // 調快 20%
       // 色相區間（粉橘、淡紫、淺藍、亮藍、深藍、亮藍）
       const h1 = lerp(15, 35, (Math.sin(t) + 1) / 2);      // 粉橘
       const h2 = lerp(270, 300, (Math.sin(t + 1.2) + 1) / 2); // 淡紫
